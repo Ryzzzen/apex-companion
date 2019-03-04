@@ -23,3 +23,13 @@ ApexCompanion.load().then(x => {
   });
   client.login(process.env.DISCORD_TOKEN);
 });
+
+const http = require('http');
+http.createServer((req, res) => {
+  res.writeHead(200, {
+    'Content-type': 'text/plain'
+  });
+
+  res.write('working');
+  res.end();
+}).listen(4000);
