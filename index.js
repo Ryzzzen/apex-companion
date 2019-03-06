@@ -16,20 +16,22 @@ ApexCompanion.on('shutdown', async function() {
 
 ApexCompanion.load().then(x => {
   client.on('ready', async () => {
-      await ApexCompanion.onReady(client);
+    await ApexCompanion.onReady(client);
 
-      client.on('message', msg => ApexCompanion.onMessage(msg));
-      console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of the guild.`);
+    client.on('message', msg => ApexCompanion.onMessage(msg));
+    console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of the guild.`);
   });
   client.login(process.env.DISCORD_TOKEN);
 });
 
-const http = require('http');
-http.createServer((req, res) => {
-  res.writeHead(200, {
-    'Content-type': 'text/plain'
-  });
+if (process.env.FREE_HOST == true) {
+  const http = require('http');
+  http.createServer((req, res) => {
+    res.writeHead(200, {
+      'Content-type': 'text/plain'
+    });
 
-  res.write('working');
-  res.end();
-}).listen(4000);
+    res.write('working');
+    res.end();
+  }).listen(4000);
+}
